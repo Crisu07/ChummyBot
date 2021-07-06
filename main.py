@@ -33,7 +33,7 @@ async def on_message(message):
     await message.channel.send(quote)
 
   if msg.startswith("$favorite"):
-    starters = ["bulbasaur", "squirtle", "charmander"]
+    starters = ["Bulbasaur", "Squirtle", "Charmander"]
     favorite = random.choice(starters)
     await message.channel.send("I kinda like {}...".format(favorite))
 
