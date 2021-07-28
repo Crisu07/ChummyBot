@@ -1,4 +1,5 @@
 # Code that keeps the bot alive by connecting it to the uptimerobot site (https://uptimerobot.com/)
+# DO NOT mess with this file
 from flask import Flask
 from threading import Thread
 

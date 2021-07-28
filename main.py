@@ -28,7 +28,7 @@ def sauce_gen():
 # Dice Roll
 def roll_dice():
   diceNumbers = [1, 2, 3, 4, 5, 6]
-  return random.choice(dic)
+  return random.choice(diceNumbers)
 
 
 
@@ -62,6 +62,11 @@ async def on_message(message):
   if msg.startswith('$sauce'):
     sauce = sauce_gen()
     await message.channel.send("What up boss! Here's yo sauce: " + sauce)
+  
+  # Dice Roll
+  if msg.startswith('$diceroll'):
+    dice = roll_dice()
+    await message.channel.send("You rolled a: " + dice)
 
 keep_alive()
 client.run(os.getenv('TOKEN'))
