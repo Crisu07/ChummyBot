@@ -33,7 +33,18 @@ def roll_dice():
   diceNumbers = ['1', '2', '3', '4', '5', '6']
   return random.choice(diceNumbers)
 
+# Pick Up Lines
+def flirt():
+  file = open(pickupLines.txt)
+  
 
+#Dad Jokes Feature
+def get_joke():
+  response = requests.get("https://icanhazdadjoke.com/")
+  lines = response.text.split("/>")
+  for i in lines:
+    if "property=\"og:description\"" in i:
+      return (i.split("content=", 1)[1])
 
 @client.event
 async def on_ready(): # Let's us know that the bot is online
@@ -70,6 +81,12 @@ async def on_message(message):
   if msg.startswith('$diceroll'):
     dice = roll_dice()
     await message.channel.send("You rolled a " + dice)
+
+  # Dad joke
+  if msg.startswith('$joke'):
+    joke = get_joke()
+    await message.channel.send(joke)
+
 
 keep_alive()
 client.run(os.getenv('TOKEN'))
