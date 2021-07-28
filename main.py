@@ -25,9 +25,12 @@ def sauce_gen():
     code += str(random.randint(0,9))
   return code
 
+"""def site_validation():
+  site = """
+
 # Dice Roll
 def roll_dice():
-  diceNumbers = [1, 2, 3, 4, 5, 6]
+  diceNumbers = ['1', '2', '3', '4', '5', '6']
   return random.choice(diceNumbers)
 
 
@@ -66,7 +69,7 @@ async def on_message(message):
   # Dice Roll
   if msg.startswith('$diceroll'):
     dice = roll_dice()
-    await message.channel.send("You rolled a: " + dice)
+    await message.channel.send("You rolled a " + dice)
 
 keep_alive()
 client.run(os.getenv('TOKEN'))
