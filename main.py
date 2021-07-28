@@ -27,9 +27,9 @@ def sauce_gen():
 
 # Dice Roll
 def roll_dice():
-  roll = random.see
+  dice
 
-
+#hai
 
 @client.event
 async def on_ready(): # Let's us know that the bot is online
