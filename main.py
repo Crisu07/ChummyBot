@@ -11,11 +11,25 @@ client = discord.Client()
 if "responding" not in db.keys():
   db["responding"] = True
 
-def get_quote(): # Gets inspirational quotes from website listed
+# Inspirational Quote Feature
+def get_quote():
   response = requests.get("https://zenquotes.io/api/random")
   json_data = json.loads(response.text)
   quote = json_data[0]['q'] + " -" + json_data[0]['a']
   return(quote)
+
+# Doujin Generator Feature
+def sauce_gen():
+  code = '' # String for code because need to plug into website and check if exists
+  for i in range(6):
+    code += str(random.randint(0,9))
+  return code
+
+# Dice Roll
+def roll_dice():
+  roll = random.see
+
+
 
 @client.event
 async def on_ready(): # Let's us know that the bot is online
@@ -42,6 +56,11 @@ async def on_message(message):
   # Greets the User
   if msg.startswith('$hey'):
     await message.channel.send("Hey, {}! You come here often?".format(message.author.mention))
+
+  # Sauce Finder
+  if msg.startswith('$sauce'):
+    sauce = sauce_gen()
+    await message.channel.send("What up boss! Here's yo sauce: " + sauce)
 
 keep_alive()
 client.run(os.getenv('TOKEN'))
