@@ -27,7 +27,7 @@ def sauce_gen():
 
 # Dice Roll
 def roll_dice():
-  dice
+  diceNumbers = [1, 2, 3, 4, 5]
 
 #hai
 
