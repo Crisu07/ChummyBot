@@ -27,9 +27,10 @@ def sauce_gen():
 
 # Dice Roll
 def roll_dice():
-  diceNumbers = [1, 2, 3, 4, 5]
+  diceNumbers = [1, 2, 3, 4, 5, 6]
+  return random.choice(dic)
 
-#hai
+
 
 @client.event
 async def on_ready(): # Let's us know that the bot is online
