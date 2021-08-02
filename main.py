@@ -39,7 +39,8 @@ def get_joke():
   lines = response.text.split("/>")
   for i in lines:
     if "property=\"og:description\"" in i:
-      return (i.split("content=", 1)[1])
+      joke = i.split("content=", 1)[1]
+      return ( joke.strip(' "'))
 
 # Pick Up Lines (When adding more pickup lines, ctrl f to make sure it's not already there)
 def flirt():
@@ -71,6 +72,7 @@ async def on_message(message):
 
   # Greets the User
   if msg.startswith('$hey'):
+    await message.add_reaction('😊')
     await message.channel.send("Hey, {}! You come here often?".format(message.author.mention))
 
   # Sauce Finder
