@@ -11,6 +11,7 @@ client = discord.Client()
 if "responding" not in db.keys():
   db["responding"] = True
 
+
 # Inspirational Quote Feature
 def get_quote():
   response = requests.get("https://zenquotes.io/api/random")
@@ -20,13 +21,11 @@ def get_quote():
 
 # Doujin Generator Feature
 def sauce_gen():
-  code = '' # String for code because need to plug into website and check if exists
+  code = ''
   for i in range(6):
     code += str(random.randint(0,9))
   return code
 
-"""def site_validation():
-  site = """
 
 # Dice Roll
 def roll_dice():
