@@ -1,6 +1,7 @@
 import requests
 import json
 
+# Example function from Youtube Tutorial
 def get_quote():
   response = requests.get("https://zenquotes.io/api/random")
   json_data = json.loads(response.text)
