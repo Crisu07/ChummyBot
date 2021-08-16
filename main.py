@@ -1,8 +1,5 @@
 import discord
 import os
-import requests
-import json
-import random
 from replit import db
 from keep_alive import keep_alive # Imports line 13 from keep_alive file
 
@@ -13,39 +10,19 @@ if "responding" not in db.keys():
 
 
 # Inspirational Quote Feature
-def get_quote():
-  response = requests.get("https://zenquotes.io/api/random")
-  json_data = json.loads(response.text)
-  quote = json_data[0]['q'] + " -" + json_data[0]['a']
-  return(quote)
+from inspirationalQuotes import get_quote
 
 # Doujin Generator Feature
-def sauce_gen():
-  code = ''
-  for i in range(6):
-    code += str(random.randint(0,9))
-  return code
-
+from doujinDigits import sauce_gen
 
 # Dice Roll
-def roll_dice():
-  diceNumbers = ['1', '2', '3', '4', '5', '6']
-  return random.choice(diceNumbers)
+from diceRoll import roll_dice
 
 #Dad Jokes Feature
-def get_joke():
-  response = requests.get("https://icanhazdadjoke.com/")
-  lines = response.text.split("/>")
-  for i in lines:
-    if "property=\"og:description\"" in i:
-      joke = i.split("content=", 1)[1]
-      return ( joke.strip(' "'))
+from dadJokes import get_joke
 
-# Pick Up Lines (When adding more pickup lines, ctrl f to make sure it's not already there)
-def flirt():
-  with open("pickupLines.txt") as file: # Read from pickupLines file and pick a random line
-    lines = file.readlines()
-    return random.choice(lines)
+# Pick Up Lines
+from pickupLine import flirt
 
 @client.event
 async def on_ready(): # Let's us know that the bot is online
@@ -62,12 +39,6 @@ async def on_message(message):
   if msg.startswith('$inspire'):
     quote = get_quote() # Retrieves a random inspirational quote 
     await message.channel.send(quote) # Send it to channel that command was given
-
-  # Picks Favorite Gen 1 Starter Pokemon
-  if msg.startswith("$favorite"):
-    starters = ["Bulbasaur", "Squirtle", "Charmander"]
-    favorite = random.choice(starters)
-    await message.channel.send("I kinda like {}...".format(favorite))
 
   # Greets the User
   if msg.startswith('$hey'):
