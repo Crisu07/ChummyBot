@@ -12,4 +12,4 @@ Bot Still a work in progress so only available on our personal server at the mom
 
 ---
 
-Created with 🔥 by [_Chrisp Chums_](https://discord.gg/atBk45B)
+Created with 🔥 by [_Chrisp Chums_]
