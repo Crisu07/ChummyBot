@@ -4,7 +4,7 @@ import requests
 links = ['/a','/b','/c','/d','/f','/g','/h','/j','/k','/l','/m','/n','/p','/q','/r','/s','/t','/u','/v','/w']
 curse = []
 
-exception = ['damn', 'flamer', 'goddamn', 'goddamnit', 'hell', 'humping', 'jap', 'junglebunny', 'jungle bunny', 'lesbian', 'pissed off', 'spook', 'smeg', 'snatch']
+exception = ['damn', 'flamer', 'goddamn', 'goddamnit', 'hell', 'humping', 'jap', 'junglebunny', 'jungle bunny', 'lesbian', 'pissed off', 'spook', 'smeg', 'snatch', 'python']
 
 #returns list of swear/bad words
 def get_curse():

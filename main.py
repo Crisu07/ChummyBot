@@ -27,6 +27,7 @@ from pickupLine import flirt
 # Slur Detection
 from curse_gen import get_curse
 blacklist = get_curse() # Imports the banned word list
+from check_curse import curseCheck
 
 @client.event
 async def on_ready(): # Let's us know that the bot is online
@@ -87,9 +88,24 @@ async def on_message(message):
     await message.channel.send(pline)
 
   # Slur Detection
+  line = msg.lower().split(' ')
+  if curseCheck(blacklist, line):
+    await message.delete()
+    await message.channel.send("That word is not permitted here, {}!".format(message.author.mention))
+  """
   if any(word in msg.lower() for word in blacklist):
     await message.delete()
     await message.channel.send("That word is not permitted here, {}!".format(message.author.mention))
+  """
+
+  # Friend Codes (Switch, Genshin)
+  """
+  if msg.startswith('$switch'):
+    if any(msg == '@'):
+      await message.channel.send("switch test")
+  if msg.startswith('$genshin'):
+    await message.channel.send("genshin test")
+  """
 
 keep_alive()
 client.run(os.getenv('TOKEN'))
