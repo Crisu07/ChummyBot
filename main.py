@@ -26,7 +26,7 @@ from pickupLine import flirt
 
 # Slur Detection
 from curse_gen import get_curse
-blacklist = get_curse()
+blacklist = get_curse() # Imports the banned word list
 
 @client.event
 async def on_ready(): # Let's us know that the bot is online
@@ -87,7 +87,7 @@ async def on_message(message):
     await message.channel.send(pline)
 
   # Slur Detection
-  if any(word in msg for word in blacklist):
+  if any(word in msg.lower() for word in blacklist):
     await message.delete()
     await message.channel.send("That word is not permitted here, {}!".format(message.author.mention))
 
