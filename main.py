@@ -24,6 +24,9 @@ from dadJokes import get_joke
 # Pick Up Lines
 from pickupLine import flirt
 
+# Slur Detection
+from antiSlur import slur
+
 @client.event
 async def on_ready(): # Let's us know that the bot is online
   print('We have logged in as {0.user}'.format(client))
@@ -65,6 +68,11 @@ async def on_message(message):
     pline = flirt()
     await message.channel.send(pline)
 
+  # Slur Detection
+  blacklist = slur()
+  if any(word in msg for word in blacklist):
+    await message.delete()
+    await message.channel.send("That word is not permitted here, {}!".format(message.author.mention))
 
 keep_alive()
 client.run(os.getenv('TOKEN'))
