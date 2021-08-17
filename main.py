@@ -92,11 +92,7 @@ async def on_message(message):
   if curseCheck(blacklist, line):
     await message.delete()
     await message.channel.send("That word is not permitted here, {}!".format(message.author.mention))
-  """
-  if any(word in msg.lower() for word in blacklist):
-    await message.delete()
-    await message.channel.send("That word is not permitted here, {}!".format(message.author.mention))
-  """
+
 
   # Friend Codes (Switch, Genshin)
   """
