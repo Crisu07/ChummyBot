@@ -25,7 +25,8 @@ from dadJokes import get_joke
 from pickupLine import flirt
 
 # Slur Detection
-from antiSlur import slur
+from curse_gen import get_curse
+blacklist = get_curse()
 
 @client.event
 async def on_ready(): # Let's us know that the bot is online
@@ -38,7 +39,7 @@ async def on_message(message):
 
   msg = message.content
 
-  # Help Command
+  # Help Command (MAKE SURE TO ADD COMMAND TO HELP WHENEVER ADDING SOMETHING NEW)
   if msg.startswith('$help'):
     embed = discord.Embed(
       title = "Command List",
@@ -86,7 +87,6 @@ async def on_message(message):
     await message.channel.send(pline)
 
   # Slur Detection
-  blacklist = slur()
   if any(word in msg for word in blacklist):
     await message.delete()
     await message.channel.send("That word is not permitted here, {}!".format(message.author.mention))
