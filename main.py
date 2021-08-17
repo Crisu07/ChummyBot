@@ -42,13 +42,13 @@ async def on_message(message):
   if msg.startswith('$help'):
     embed = discord.Embed(
       title = "Command List",
-      description = "$help - List of commands from me!"
-      +"\n$hey - Hello!"
-      "\n$inspire - Provides an inspirational quote to brighten your day <3"
-      +"\n$sauce - Must be 18+ to use this command or otherwise be punished by my owner!😠"
-      +"\n$diceroll - Roll a six sided die."
-      +"\n$joke - Ever heard of Mariel's weird jokes? Here's some!"
-      +"\n$flirt - Feeling lonely? Here's some pickup lines for you!😉"
+      description = "**$help** - List of commands from me!"
+      +"\n**$hey** - Hello!"
+      +"\n**$inspire** - Provides an inspirational quote to brighten your day <3"
+      +"\n**$sauce** - Must be 18+ to use this command or otherwise be punished by my owner!😠"
+      +"\n**$diceroll** - Roll a six sided die."
+      +"\n**$joke** - Ever heard of Mariel's weird jokes? Here's some!"
+      +"\n**$flirt** - Feeling lonely? Here's some pickup lines for you!😉"
       ,
       color = 0xFABFB2
     )
