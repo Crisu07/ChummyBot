@@ -94,15 +94,7 @@ async def on_message(message):
     await message.channel.send("That word is not permitted here, {}!".format(message.author.mention))
 
 
-  # Friend Codes (Switch, Genshin)
-  """
-  if msg.startswith('$switch'):
-    if any(msg == '@'):
-      await message.channel.send("switch test")
-  if msg.startswith('$genshin'):
-    if any(msg == '@'):
-      await message.channel.send("genshin test")
-  """
+  # Friend Codes
 
 keep_alive()
 client.run(os.getenv('TOKEN'))
