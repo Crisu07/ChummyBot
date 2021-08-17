@@ -1,3 +1,4 @@
+#checks for exact matches of swear/bad words from someone's sentence and our dictionary 
 def curseCheck( curse, line):
   for i in line:
     if i in curse:

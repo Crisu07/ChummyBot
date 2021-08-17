@@ -100,7 +100,8 @@ async def on_message(message):
     if any(msg == '@'):
       await message.channel.send("switch test")
   if msg.startswith('$genshin'):
-    await message.channel.send("genshin test")
+    if any(msg == '@'):
+      await message.channel.send("genshin test")
   """
 
 keep_alive()
