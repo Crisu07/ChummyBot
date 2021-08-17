@@ -38,6 +38,20 @@ async def on_message(message):
 
   msg = message.content
 
+  # Help Command
+  if msg.startswith('$help'):
+    embed = discord.Embed(
+      title = "Command List",
+      description = "$help - List of commands from me!" +
+      "\n$hey - Hello!" +
+      "\n$inspire - Provides an inspirational quote to brighten your day <3" +
+      "\n$sauce - Must be 18+ to use this command or otherwise be punished by my owner >:3"
+      ,
+      color = 0xFABFB2
+    )
+    await message.channel.send(embed=embed)
+
+
   # Inspirational Quote
   if msg.startswith('$inspire'):
     quote = get_quote() # Retrieves a random inspirational quote 
