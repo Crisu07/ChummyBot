@@ -13,12 +13,8 @@ def get_curse():
     lines = response.text.split(">")
     for i in lines:
       if "<a name=" in i:
-        joke= i.split("a name=", 1)[1]
-        if joke.strip(' "') == "top":
+        word = i.split("a name=", 1)[1]
+        if word.strip(' "') == "top" or word.strip(' "') in exception:
           continue
-        curse.append( joke.strip(' "'))
-  
-  for i in exception:
-      curse.remove(i)
-
+        curse.append( word.strip(' "'))
   return curse
