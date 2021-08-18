@@ -1,7 +1,7 @@
 import discord
 import os
 from replit import db
-from keep_alive import keep_alive # Imports line 13 from keep_alive file
+from keepAlive import keep_alive # Imports line 13 from keep_alive file
 
 client = discord.Client()
 
@@ -25,9 +25,9 @@ from dadJokes import get_joke
 from pickupLine import flirt
 
 # Slur Detection
-from curse_gen import get_curse
+from curseGen import get_curse
 blacklist = get_curse() # Imports the banned word list
-from check_curse import curseCheck
+from checkCurse import curseCheck
 
 @client.event
 async def on_ready(): # Let's us know that the bot is online
