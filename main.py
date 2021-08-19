@@ -1,5 +1,6 @@
 import discord
 import os
+import music
 from replit import db
 from keepAlive import keep_alive # Imports line 13 from keep_alive file
 
@@ -28,6 +29,12 @@ from pickupLine import flirt
 from curseGen import get_curse
 blacklist = get_curse() # Imports the banned word list
 from checkCurse import check_curse
+
+# Music Function
+# import music # Get the music cog from music.py
+# client = commands.Bot(command_prefix = '$', intents = discord.Indents.all())
+# music.setup(client)
+
 
 @client.event
 async def on_ready(): # Let's us know that the bot is online
@@ -86,6 +93,26 @@ async def on_message(message):
   if msg.startswith('$flirt'):
     pline = flirt()
     await message.channel.send(pline)
+  
+  # Music: Join
+  if msg.startswith("$join"):
+    await music.join(message)
+
+  # Music: Disconnect
+  if msg.startswith("$disconnect"):
+    await music.disconnect(message)
+
+  # Music: Play
+  if msg.startswith("$play"):
+    await music.play(message)
+
+  # Music: Pause
+  if msg.startswith("$pause"):
+    await music.pause(message)
+
+  # Music: Resume
+  if msg.startswith("$resume"):
+    await music.resume(message)
 
   # Slur Detection
   line = msg.lower().split(' ')
