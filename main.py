@@ -30,12 +30,6 @@ from curseGen import get_curse
 blacklist = get_curse() # Imports the banned word list
 from checkCurse import check_curse
 
-# Music Function
-# import music # Get the music cog from music.py
-# client = commands.Bot(command_prefix = '$', intents = discord.Indents.all())
-# music.setup(client)
-
-
 @client.event
 async def on_ready(): # Let's us know that the bot is online
   print('We have logged in as {0.user}'.format(client))
@@ -119,7 +113,6 @@ async def on_message(message):
   if check_curse(blacklist, line):
     await message.delete()
     await message.channel.send("That word is not permitted here, {}!".format(message.author.mention))
-
 
   # Friend Codes
 
