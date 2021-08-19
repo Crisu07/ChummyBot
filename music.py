@@ -1,5 +1,4 @@
 import discord
-from discord.ext import commands
 import youtube_dl
 
 async def join(msg):
@@ -19,7 +18,7 @@ async def play(msg):
   url = msg.content.split(' ')[1]
   vc = msg.guild.voice_client
   vc.stop() # If Music already playing, stop it and play the next
-  
+
   # Taken from Discord API \/
   FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
   YDL_OPTIONS = {'format' : "bestaudio"} # Ensures that bot is playing best audio possible for music
