@@ -25,6 +25,9 @@ from dadJokes import get_joke
 # Pick Up Lines
 from pickupLine import flirt
 
+# Friend Codes Feature
+import friendCodes
+
 # Slur Detection
 from curseGen import get_curse
 blacklist = get_curse() # Imports the banned word list
@@ -88,6 +91,7 @@ async def on_message(message):
     pline = flirt()
     await message.channel.send(pline)
   
+#-------------------------------------------------------------------------------------------------------------------
   # Music: Join
   if msg.startswith("$join"):
     await music.join(message)
@@ -108,13 +112,27 @@ async def on_message(message):
   if msg.startswith("$resume"):
     await music.resume(message)
 
+#-------------------------------------------------------------------------------------------------------------------
+  # Friend Codes (Nintendo Switch by Default)
+  if msg.startswith("$setfc"):
+    await friendCodes.set_code(message)
+  if msg.startswith("$fc"):
+    await friendCodes.get_code(message)
+
+  # Pokemon Go FCs
+  if msg.startswith("$setpogo"):
+    await friendCodes.set_code(message, type="Pokemon Go")
+
+  # Genshin FCs
+  if msg.startswith("$setgenshin"): 
+    await friendCodes.set_code(message, type="Genshin Impact")
+
+#-------------------------------------------------------------------------------------------------------------------
   # Slur Detection
   line = msg.lower().split(' ')
   if check_curse(blacklist, line):
     await message.delete()
     await message.channel.send("That word is not permitted here, {}!".format(message.author.mention))
-
-  # Friend Codes
 
 keep_alive()
 client.run(os.getenv('TOKEN'))
