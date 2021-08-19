@@ -18,11 +18,12 @@ async def disconnect(msg):
 async def play(msg):
   url = msg.content.split(' ')[1]
   vc = msg.guild.voice_client
-  vc.stop()
+  vc.stop() # If Music already playing, stop it and play the next
+  
   # Taken from Discord API \/
   FFMPEG_OPTIONS = {'before_options': '-reconnect 1 -reconnect_streamed 1 -reconnect_delay_max 5', 'options': '-vn'}
   YDL_OPTIONS = {'format' : "bestaudio"} # Ensures that bot is playing best audio possible for music
-  
+
   # Video Streaming
   with youtube_dl.YoutubeDL(YDL_OPTIONS) as ydl:
     await msg.channel.send("Playing {} 🔊".format(url))
