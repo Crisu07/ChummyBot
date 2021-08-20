@@ -33,6 +33,8 @@ from curseGen import get_curse
 blacklist = get_curse() # Imports the banned word list
 from checkCurse import check_curse
 
+from ticTactoe import play_tic
+
 @client.event
 async def on_ready(): # Let's us know that the bot is online
   print('We have logged in as {0.user}'.format(client))
@@ -40,7 +42,7 @@ async def on_ready(): # Let's us know that the bot is online
 @client.event
 async def on_message(message):
   if message.author == client.user:
-    return
+    return 
 
   msg = message.content
 
@@ -133,6 +135,9 @@ async def on_message(message):
   if check_curse(blacklist, line):
     await message.delete()
     await message.channel.send("That word is not permitted here, {}!".format(message.author.mention))
+
+  if msg.startswith('$test'):
+    await play_tic(message, client)
 
 keep_alive()
 client.run(os.getenv('TOKEN'))
