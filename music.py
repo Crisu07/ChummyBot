@@ -3,7 +3,7 @@ import youtube_dl
 
 async def join(msg):
   if msg.author.voice is None: # If the user is not in a voice channel
-    await msg.send("Baka you're not in a voice channel!")
+    await msg.channel.send("Baka you're not in a voice channel!")
   voice_channel = msg.author.voice.channel
 
   if msg.guild.voice_client is None: # If the bot is not in a voice channel, then connect
