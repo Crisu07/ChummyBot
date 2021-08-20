@@ -9,6 +9,7 @@ client = discord.Client()
 if "responding" not in db.keys():
   db["responding"] = True
 
+
 # Inspirational Quote Feature
 from inspirationalQuotes import get_quote
 
@@ -101,7 +102,7 @@ async def on_message(message):
 
   # Music: Play
   if msg.startswith("$play"):
-    await music.search(message)
+    await music.play(message)
 
   # Music: Pause
   if msg.startswith("$pause"):
@@ -110,10 +111,6 @@ async def on_message(message):
   # Music: Resume
   if msg.startswith("$resume"):
     await music.resume(message)
-  
-  # Music: Skip
-  if msg.startswith('$skip'):
-    await music.skip(message)
 
 #-------------------------------------------------------------------------------------------------------------------
   # Friend Codes (Nintendo Switch by Default)
