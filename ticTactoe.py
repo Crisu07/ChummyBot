@@ -12,7 +12,12 @@ async def game_options(msg, client):
   await mes.add_reaction('2️⃣')
   react = await get_char(msg, client)
 
-  if str(reaction.emoji)
+  if react == '1️⃣':
+    # call 2 player function 
+    pass
+  elif react == '2️⃣':
+    # bot function 
+    pass
   
 async def play_tic(msg, client):
   blank = '⬜'
@@ -41,28 +46,39 @@ async def play_tic(msg, client):
   #recaps who's what character 
   await msg.channel.purge(limit=1)
   embed = discord.Embed(
-    title = 'Your character will be: ' + player + '\nChummy will be: ' + bot,
+    title = 'Your character will be: ' + player + '\nPlayer 2 will be: ' + bot,
     color = 0xFABFB2
   )
   await msg.channel.send(embed = embed)
 
   #randomly selects who will go first, player or cpu
+  """
   num = random.randint(1,2)
   turn = ''
   if num == 1:
     turn = 'player'
   else:
     turn = 'bot'
-
+  """
+  currentplayer = 1
   #initialize winner to being none
   winner = 'none'
+  await msg.channel.send('Player ' + str(currentplayer) + '\'s turn:')
   await player_turn(msg, board, emojis, client, player)
   while winner == 'none':
-    await msg.channel.purge(limit=2)
+    await msg.channel.purge(limit=3)
     winner = await check_win(board, player, bot)
     if winner != 'none':
       break
-    await player_turn(msg, board, emojis, client, player)
+    if currentplayer == 1:
+      currentplayer = 2
+      await msg.channel.send('Player ' + str(currentplayer) + '\'s turn:')
+      await player_turn(msg, board, emojis, client, bot)
+    else:
+      currentplayer = 1
+      await msg.channel.send('Player ' + str(currentplayer) + '\'s turn:')
+      await player_turn(msg, board, emojis, client, player)
+    await msg.channel.send('Player ' + str(currentplayer) + '\'s turn:')
   await msg.channel.send('Winner!' + winner)
 
 
@@ -70,7 +86,7 @@ async def play_tic(msg, client):
   #To Do: inform command  time out #function to wait for reaction response
 async def get_char(msg, client):
   def check_reaction( reaction, user):
-    return user == msg.author
+    return not user.bot
 
   reaction, user = await client.wait_for("reaction_add", timeout = 30.0, check = check_reaction)
   return str(reaction.emoji)
@@ -91,7 +107,7 @@ async def print_board(msg,board, emojis):
 
 #function for when it is the player's turn 
 async def player_turn(msg, board, emojis, client, player):
-  await msg.channel.send('Choose a position to place your character:')
+  #await msg.channel.send('Choose a position to place your character:')
   await print_board(msg, board, emojis)
   move = await get_char(msg, client)
   emojis.remove(move)
