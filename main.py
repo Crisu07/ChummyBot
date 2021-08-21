@@ -36,6 +36,10 @@ from checkCurse import check_curse
 # Tic Tac Toe Game
 from ticTactoe import play_tic, game_options
 
+# Music Player 
+from music import musicplayer
+m = musicplayer()
+
 @client.event
 async def on_ready(): # Let's us know that the bot is online
   print('We have logged in as {0.user}'.format(client))
@@ -95,25 +99,22 @@ async def on_message(message):
     await message.channel.send(pline)
   
 #-------------------------------------------------------------------------------------------------------------------
-  # Music: Join
-  if msg.startswith("$join"):
-    await music.join(message)
-
   # Music: Disconnect
   if msg.startswith("$disconnect"):
-    await music.disconnect(message)
+    await m.disconnect(message)
 
   # Music: Play
   if msg.startswith("$play"):
-    await music.play(message)
+    await m.join(message)
+    await m.play(message)
 
   # Music: Pause
   if msg.startswith("$pause"):
-    await music.pause(message)
+    await m.pause(message)
 
   # Music: Resume
   if msg.startswith("$resume"):
-    await music.resume(message)
+    await m.resume(message)
 
 #-------------------------------------------------------------------------------------------------------------------
   # Friend Codes (Nintendo Switch by Default)
