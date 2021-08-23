@@ -140,9 +140,6 @@ async def on_message(message):
 
 #-------------------------------------------------------------------------------------------------------------------
   # Tic Tac Toe Game
-  if msg.startswith('$test'):
-    await game_options(message, client)
-
   if msg.startswith('$tictac'):
     await play_tic(message, client)
   
