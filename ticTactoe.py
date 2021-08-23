@@ -8,12 +8,12 @@ async def game_options(msg, client):
     title = "Game Options",
     description = "1. TicTacToe (with a friend) \n 2. TicTacToe (with me)"
   )
-  #await msg.channel.purge(limit=1)
+  
   mes = await msg.channel.send(embed= embed)
   await mes.add_reaction('1️⃣')
   await mes.add_reaction('2️⃣')
   react = await get_char(msg, client)
-
+  await msg.channel.purge(limit=1)
   if react == '1️⃣':
     choice = 1
   elif react == '2️⃣':
@@ -37,7 +37,7 @@ async def play_tic(msg, client):
   choice = await game_options(msg, client)
   embed = discord.Embed(
     title = 'Choose your charcter for Tic Tac Toe!',
-    decription = '(Timeout time for reaction responses is 30 seconds)',
+    decription = "(Timeout time for reaction responses is 30 seconds)",
     color = 0xFABFB2
   )
   mes = await msg.channel.send(embed = embed)
@@ -67,11 +67,13 @@ async def play_tic(msg, client):
     currentplayer = num
     await msg.channel.send('Player ' + str(currentplayer) + '\'s turn:')
     await player_turn(msg, board, emojis, client, index, player)
+    await msg.channel.purge(limit=2)
   else:
     currentplayer = num
     if choice == 1:
       await msg.channel.send('Player ' + str(currentplayer) + '\'s turn:')
       await player_turn(msg, board, emojis, client, Player2_char)
+      await msg.channel.purge(limit=2)
     else:
       move = await bot_turn(msg, board, emojis, index, client, Player2_char, player)
       board[move] = Player2_char
@@ -80,7 +82,7 @@ async def play_tic(msg, client):
   winner = 'none'
   turn = 1
   while turn < 9:
-    await msg.channel.purge(limit=3)
+
     winner = await check_win(board, player, Player2_char)
     if winner != 'none':
       break
@@ -89,21 +91,32 @@ async def play_tic(msg, client):
       if choice == 1:
         await msg.channel.send('Player ' + str(currentplayer) + '\'s turn:')
         await player_turn(msg, board, emojis, client, index, player)
+        await msg.channel.purge(limit=2)
       else:
         move = await bot_turn(msg, board, emojis, index, client, Player2_char, player)
         board[move] = Player2_char
-        await msg.channel.send(index) #for testing
     else:
       currentplayer = 1
       await msg.channel.send('Player ' + str(currentplayer) + '\'s turn:')
       await player_turn(msg, board, emojis, client, index, player)
+      await msg.channel.purge(limit=2)
     turn += 1
-    await msg.channel.send('Player ' + str(currentplayer) + '\'s turn:')
+  
   if turn == 9:
-    await msg.channel.send('Tie!')
+    winner = await check_win(board, player, Player2_char)
+    if winner != 'none':
+      await msg.channel.send('Winner! ' + winner)
+    else:
+      await msg.channel.send('Tie!')
   else:
     await msg.channel.send('Winner! ' + winner)
-
+  line  = ''
+  for i in range(len(board)):
+    if (i + 1) % 3 == 0:
+      line += board[i] + '\n'
+    else:
+      line += board[i]
+  mes = await msg.channel.send(line)
 
   
 #------------------------------------------------------------------------------------
@@ -174,7 +187,7 @@ async def check_win(board, player, bot):
   elif (board[3] == board[4] == board[5]):
     winner = board[3]
   elif (board[6] == board[7] == board[8]):
-    winner = board[3]
+    winner = board[6]
   
   #checking vertical 
   if (board[0] == board[3] == board[6]):
@@ -190,7 +203,7 @@ async def check_win(board, player, bot):
   elif (board[2] == board[4] == board[6]):
     winner = board[2]
 
-  if winner != player and winner != bot:
+  if winner == '⬜':
     winner = 'none'
   return winner
 
