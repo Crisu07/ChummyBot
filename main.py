@@ -133,10 +133,26 @@ async def on_message(message):
 
 #-------------------------------------------------------------------------------------------------------------------
   # Slur Detection
+  disabled_chs = []
+
+  if msg.startswith("$slur disable") & message.author.guild_permissions.administrator:
+    if message.channel.id not in disabled_chs: 
+      disabled_chs.append(message.channel.id)
+    else:
+      await message.channel.send("Error. Slur Detection already disabled.")
+
+  if msg.startswith("$slur enable") & message.author.guild_permissions.administrator:
+    if message.channel.id in disabled_chs: 
+      disabled_chs.remove(message.channel.id)
+    else:
+      await message.channel.send("Error. Slur Detection already enabled.")
+
+
   line = msg.lower().split(' ')
-  if check_curse(blacklist, line):
-    await message.delete()
-    await message.channel.send("That word is not permitted here, {}!".format(message.author.mention))
+  if message.channel.id not in disabled_chs:
+    if check_curse(blacklist, line):
+      await message.delete()
+      await message.channel.send("That word is not permitted here, {}!".format(message.author.mention))
 
 #-------------------------------------------------------------------------------------------------------------------
   # Tic Tac Toe Game

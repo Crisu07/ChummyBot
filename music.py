@@ -29,6 +29,7 @@ class musicplayer():
   async def play(self, msg):
     #checks if message has a url 
     vc = msg.guild.voice_client
+    vc.stop() # stops current song to play the next (queue not available yet)
     if "https://" in msg.content:
       url = msg.content.split(' ')[1]
       # vc.stop() # If Music already playing, stop it and play the next
