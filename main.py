@@ -32,6 +32,7 @@ import friendCodes
 from curseGen import get_curse
 blacklist = get_curse() # Imports the banned word list
 from checkCurse import check_curse
+disabled_chs = []
 
 # Tic Tac Toe Game
 from ticTactoe import play_tic, game_options
@@ -133,23 +134,26 @@ async def on_message(message):
 
 #-------------------------------------------------------------------------------------------------------------------
   # Slur Detection
-  disabled_chs = []
-
-  if msg.startswith("$slur disable") & message.author.guild_permissions.administrator:
-    if message.channel.id not in disabled_chs: 
-      disabled_chs.append(message.channel.id)
+  
+  if msg.startswith("$slur disable"):
+    if (str(message.channel.id) not in db.keys()) & message.author.top_role.permissions.administrator : 
+      db[str(message.channel.id)] = message.channel.id
+      await message.delete()
+      await message.channel.send("Success, Slur detection disabled.")
     else:
       await message.channel.send("Error. Slur Detection already disabled.")
 
-  if msg.startswith("$slur enable") & message.author.guild_permissions.administrator:
-    if message.channel.id in disabled_chs: 
-      disabled_chs.remove(message.channel.id)
+  if msg.startswith("$slur enable"):
+    if (str(message.channel.id) in db.keys()) & message.author.top_role.permissions.administrator :
+      del db[str(message.channel.id)]
+      await message.delete()
+      await message.channel.send("Success, Slur detection enabled.")
     else:
       await message.channel.send("Error. Slur Detection already enabled.")
 
 
   line = msg.lower().split(' ')
-  if message.channel.id not in disabled_chs:
+  if str(message.channel.id) not in db.keys():
     if check_curse(blacklist, line):
       await message.delete()
       await message.channel.send("That word is not permitted here, {}!".format(message.author.mention))
