@@ -1,6 +1,6 @@
 # Chummy Bot 🥚
 
-> A Discord bot made for fun for my Discord Server.
+> A Discord bot made for fun for our Discord Server.
 
 ## Inviting the Client 🤖
 
