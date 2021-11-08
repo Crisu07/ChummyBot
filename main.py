@@ -63,6 +63,11 @@ async def on_message(message):
       +"\n**$diceroll** - Roll a six sided die."
       +"\n**$joke** - Ever heard of Mariel's weird jokes? Here's some!"
       +"\n**$flirt** - Feeling lonely? Here's some pickup lines for you!😉"
+      +"\n**$tictac** - Play Tic Tac Toe with me!"
+      +"\n**$setfc** - Set your Nintendo Switch Friendcode in the exact format as: SW-xxxx-xxxx-xxxx"
+      +"\n**$setpogo** - Set your Pokemon Go friend code."
+      +"\n**$setgenshin** - Set your Genshin Impact friend code."
+      +"\n**$fc** - Pull up all your friend codes, likewise @someone after to pull up theirs."
       ,
       color = 0xFABFB2
     )
@@ -100,7 +105,7 @@ async def on_message(message):
     await message.channel.send(pline)
   
 #-------------------------------------------------------------------------------------------------------------------
-  # Music: Disconnect
+  """# Music: Disconnect
   if msg.startswith("$disconnect"):
     await m.disconnect(message)
 
@@ -115,7 +120,7 @@ async def on_message(message):
 
   # Music: Resume
   if msg.startswith("$resume"):
-    await m.resume(message)
+    await m.resume(message)"""
 
 #-------------------------------------------------------------------------------------------------------------------
   # Friend Codes (Nintendo Switch by Default)
