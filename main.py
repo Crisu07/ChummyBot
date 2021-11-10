@@ -33,10 +33,10 @@ from curseGen import get_curse
 blacklist = get_curse() # Imports the banned word list
 from checkCurse import check_curse
 disabled_chs = []
-
+""""
 # Tic Tac Toe Game
-#from ticTactoe import play_tic, game_options
-
+from ticTactoe import play_tic, game_options
+"""
 # Music Player 
 from music import musicplayer
 m = musicplayer()
