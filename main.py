@@ -35,7 +35,7 @@ from checkCurse import check_curse
 disabled_chs = []
 
 # Tic Tac Toe Game
-from ticTactoe import play_tic, game_options
+#from ticTactoe import play_tic, game_options
 
 # Music Player 
 from music import musicplayer
@@ -62,7 +62,7 @@ async def on_message(message):
       +"\n**$inspire** - Provides an inspirational quote to brighten your day <3"
       +"\n**$sauce** - Must be 18+ to use this command or otherwise be punished by my owner!😠"
       +"\n**$diceroll** - Roll a six sided die."
-      +"\n**$joke** - Ever heard of Mariel's weird jokes? Here's some!"
+      +"\n**$joke** - Ever heard of lame jokes? Here's some!"
       +"\n**$flirt** - Feeling lonely? Here's some pickup lines for you!😉"
       +"\n**$tictac** - Play Tic Tac Toe with me!"
       +"\n**$setfc** - Set your Nintendo Switch Friendcode in the exact format as: SW-xxxx-xxxx-xxxx"
