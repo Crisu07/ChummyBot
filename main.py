@@ -56,7 +56,7 @@ async def on_message(message):
   if msg.startswith('$help'):
     embed = discord.Embed(
       title = "Command List",
-      description = "As of right now, my masters are halting further updates to me to work on other projects. I will be updated with more features in the near future! Thank you for the support <3"
+      description = "I will be updated with more features in the near future! Thank you for the support <3"
       +"\n**$help** - List of commands from me!"
       +"\n**$hey** - Hello!"
       +"\n**$inspire** - Provides an inspirational quote to brighten your day <3"
@@ -171,4 +171,5 @@ async def on_message(message):
   
 
 keep_alive()
-client.run(os.environ('TOKEN'))
+#my_secret = os.environ['token']
+client.run(os.getenv('TOKEN'))
