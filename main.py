@@ -1,6 +1,6 @@
 import discord
 import os
-import music
+#import music
 from replit import db
 from keepAlive import keep_alive # Imports line 13 from keep_alive file
 
@@ -166,9 +166,9 @@ async def on_message(message):
 
 #-------------------------------------------------------------------------------------------------------------------
   # Tic Tac Toe Game
-  if msg.startswith('$tictac'):
-    await play_tic(message, client)
+  #if msg.startswith('$tictac'):
+  #  await play_tic(message, client)
   
 
 keep_alive()
-client.run(os.getenv('TOKEN'))
+client.run(os.environ('TOKEN'))
