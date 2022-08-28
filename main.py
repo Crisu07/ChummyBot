@@ -171,5 +171,4 @@ async def on_message(message):
   
 
 keep_alive()
-#my_secret = os.environ['token']
 client.run(os.getenv('TOKEN'))
